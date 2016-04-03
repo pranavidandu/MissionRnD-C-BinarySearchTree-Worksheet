@@ -22,14 +22,63 @@ struct node{
 	struct node *right;
 };
 
-
-void inorder(struct node *root, int *arr){
+void inorder_recursive(struct node *root, int *arr, int index){
+	if (root->left != NULL){
+		inorder_recursive(root->left, arr, index);
+		index++;
+	}
+	arr[index] = root->data;
+	index++;
+	if (root->right != NULL){
+		inorder_recursive(root->right, arr, index);
+	}
 	
+	return;
+}
+void preorder_recursive(struct node *root, int *arr, int index){
+	arr[index] = root->data;
+	index++;
+	if (root->left != NULL){
+		preorder_recursive(root->left, arr, index);
+	}
+	index++;
+	if (root->right != NULL){
+		preorder_recursive(root->right, arr, index);
+	}
+	return;
+}
+void postorder_recursive(struct node *root, int *arr, int index){
+	if (root->left != NULL){
+		postorder_recursive(root->left, arr, index);
+		index++;
+	}
+	if (root->right != NULL){
+		postorder_recursive(root->right, arr, index);
+		index++;
+	}
+	arr[index] = root->data;
+	index++;
+	return;
+}
+void inorder(struct node *root, int *arr){
+	if (root == NULL || arr == NULL)
+		return;
+	int index = 0;
+	inorder_recursive(root, arr, index);
+	return;
 }
 void preorder(struct node *root, int *arr){
-	
+	if (root == NULL || arr == NULL)
+		return;
+	int index = 0;
+	preorder_recursive(root, arr, index);
+	return;
 }
 void postorder(struct node *root, int *arr){
-	
+	if (root == NULL || arr == NULL)
+		return;
+	int index = 0;
+	postorder_recursive(root, arr, index);
+	return;
 }
 

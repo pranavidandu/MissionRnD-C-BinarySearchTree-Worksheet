@@ -26,8 +26,41 @@ struct node *newNode(int key)
 	temp->right = NULL;
 	return temp;
 }
+struct node * new_node_spec(int data){
+	struct node *temp = (struct node *)malloc(sizeof(struct node));
+	temp->data = data;
+	temp->left = NULL;
+	temp->right = NULL;
+	return temp;
+}
+struct node * add_node_spec(struct node *root, int data){
+	if (root == NULL) return new_node_spec(data);
+
+	if (data < root->data)
+		root->left = add_node_spec(root->left, data);
+	else if (data > root->data)
+		root->right = add_node_spec(root->right, data);
+
+	return root;
+}
 
 int main(){
+	struct node *root = NULL;
+	int nums[10] = { 2, 1, 3 };
+	int elements = 3;
+	for (int i = 0; i < 3; i++){
+		root = add_node_spec(root, nums[i]);
+	}
 
+	int result[3];
+	/*postorder(root, result);
+	for (int i = 0; i < 3; i++)
+		printf("%d->\n", result[i]);
+	preorder(root, result);
+	for (int i = 0; i < 3; i++)
+		printf("%d->\n", result[i]);
+	postorder(root, result);
+	for (int i = 0; i < 3; i++)
+		printf("%d->\n", result[i]);*/
 	//Use it for testing ,Creating BST etc
 }
