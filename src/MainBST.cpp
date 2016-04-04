@@ -46,13 +46,18 @@ struct node * add_node_spec(struct node *root, int data){
 
 int main(){
 	struct node *root = NULL;
-	int nums[10] = { 2, 1, 3 };
+	int nums[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int elements = 3;
-	for (int i = 0; i < 3; i++){
+	for (int i = 0; i < 10; i++){
 		root = add_node_spec(root, nums[i]);
 	}
-
-	int result[3];
+	int height = get_height(root);
+	printf("height %d\n", height);
+	int sum1 = get_left_subtree_sum(root);
+	printf("sum %d\n", sum1);
+	int sum = get_right_subtree_sum(root);
+	printf("sum %d\n", sum);
+	//int result[3];
 	/*postorder(root, result);
 	for (int i = 0; i < 3; i++)
 		printf("%d->\n", result[i]);
