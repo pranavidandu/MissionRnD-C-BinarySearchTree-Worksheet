@@ -26,6 +26,7 @@ Note : Return head of newly created BST
 Note : Return Null for invalid Inputs
 Note : Donot create a new BST .
 */
+#include<stdio.h>
 #include <stdlib.h>
 struct node{
 	struct node * left;
@@ -33,9 +34,22 @@ struct node{
 	struct node *right;
 };
 
-
+struct node* convert_bbst(int *arr, int start, int end){
+	if (start > end){
+		return NULL;
+	}
+		struct node* ptr = (struct node *)malloc(sizeof(struct node));
+		int mid = (start + end) / 2;
+		ptr->data = arr[mid];
+		ptr->left = NULL;
+		ptr->right = NULL;
+		ptr->left = convert_bbst(arr, start, mid - 1);
+		ptr->right = convert_bbst(arr, mid + 1, end);
+		return ptr;
+}
 struct node * convert_array_to_bst(int *arr, int len){
-	
-	return NULL;
+	if (arr == NULL)
+		return NULL;
+	return convert_bbst(arr, 0, len - 1);
 }
 

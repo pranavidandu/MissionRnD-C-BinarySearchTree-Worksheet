@@ -29,9 +29,16 @@ struct node{
 	struct node *right;
 };
 
-
+void print_rows(int *arr, int index, struct node* root){
+	arr[index++] = root->data;
+	print_rows(arr, index, root->left);
+	print_rows(arr, index, root->right);
+}
 
 int* BSTRighttoLeftRows(struct node* root)
-{
-    return NULL;
+{	 if (root == NULL)
+		return NULL;
+	int arr[30];
+	print_rows(arr, 0, root);
+	return arr;
 }

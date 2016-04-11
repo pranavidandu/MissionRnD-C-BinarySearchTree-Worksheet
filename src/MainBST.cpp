@@ -43,9 +43,16 @@ struct node * add_node_spec(struct node *root, int data){
 
 	return root;
 }
-
+void preOrder(struct node* root)
+{
+	if (root == NULL)
+		return;
+	printf("%d ", root->data);
+	preOrder(root->left); 
+	preOrder(root->right);
+}
 int main(){
-	struct node *root = NULL;
+	/*struct node *root = NULL;
 	int nums[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int elements = 3;
 	for (int i = 0; i < 10; i++){
@@ -56,7 +63,7 @@ int main(){
 	int sum1 = get_left_subtree_sum(root);
 	printf("sum %d\n", sum1);
 	int sum = get_right_subtree_sum(root);
-	printf("sum %d\n", sum);
+	printf("sum %d\n", sum);*/
 	//int result[3];
 	/*postorder(root, result);
 	for (int i = 0; i < 3; i++)
@@ -68,4 +75,10 @@ int main(){
 	for (int i = 0; i < 3; i++)
 		printf("%d->\n", result[i]);*/
 	//Use it for testing ,Creating BST etc
+	int arr[10] = {9, 12, 18, 23, 24, 51, 84};
+	struct node *root = NULL;
+	root = convert_array_to_bst(arr, 7);
+	printf("im out\n");
+	//printf("%d data\n", root->left->data);
+	preOrder(root);
 }
