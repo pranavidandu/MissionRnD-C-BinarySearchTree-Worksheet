@@ -40,36 +40,22 @@ struct node{
 	struct node *right;
 };
 
-void left_height_tree(struct node *root, int *height){
-	if (root->left != NULL){
-		*height = *height + 1;
-		left_height_tree(root->left, height);
+int height(struct node* root){
+	if (root == NULL)
+		return 0;
+	else{
+		int h1 = height(root->left);
+		int h2 = height(root->right);
+		if (h1 > h2)
+			return h1 + 1;
+		else return h2 + 1;
 	}
-	if (root->right != NULL){
-		left_height_tree(root->right, height);
-	}
-	return;
-}
-void right_height_tree(struct node *root, int *height){
-	if (root->right != NULL){
-		*height = *height + 1;
-		right_height_tree(root->right, height);
-	}
-	if (root->left != NULL){
-		right_height_tree(root->left, height);
-	}
-	return;
 }
 int get_height(struct node *root){
 	if (root == NULL)
 		return -1;
-	int height1 = 1;
-	left_height_tree(root, &height1);//height of left sub tree
-	int height2 = 1;
-	right_height_tree(root, &height2);//height of right sub tree
-	if (height1 > height2)
-		return height1;
-	else return height2;
+	//int height1 = 0;
+	return height(root);
 }
 //recursive function to get the sum of the left sub tree
 int left_subtree_sum(struct node *root, int sum){

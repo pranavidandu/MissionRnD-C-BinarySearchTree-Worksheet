@@ -51,19 +51,47 @@ void preOrder(struct node* root)
 	preOrder(root->left); 
 	preOrder(root->right);
 }
+
 int main(){
 	/*struct node *root = NULL;
-	int nums[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-	int elements = 3;
-	for (int i = 0; i < 10; i++){
+	int nums[10] = { 10, 5, 7, 12, 15 };
+
+	for (int i = 0; i < 5; i++){
 		root = add_node_spec(root, nums[i]);
 	}
-	int height = get_height(root);
+
+
+	//int *arr = BSTRighttoLeftRows(root);
+
+	printf("im going in\n");
+	int *arr = BSTRighttoLeftRows(root);
+	int ans[5] = { 10, 12, 5, 15, 7 };
+	int len = 5;
+	//int ans[5] = { 10, 12, 5, 15, 7 };
+	//int len = 5;
+	//printf("%d data\n", arr[0]);
+	//printf("%d data\n", arr[1]);
+	//printf("%d data\n", ans[2]);
+	//int ans[5] = { 10, 12, 5, 15, 7 };
+	//int len = 5;
+	for (int i = 0; i < len; i++)
+		printf("%d %d\n", arr[i], ans[i]);
+	/*struct node *root = NULL;
+	int nums[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	//int elements = 3;
+	for (int i = 0; i < 10; i++){
+		root = add_node_spec(root, nums[i]);
+	}*/
+	/*int height = get_height(root);
 	printf("height %d\n", height);
 	int sum1 = get_left_subtree_sum(root);
 	printf("sum %d\n", sum1);
 	int sum = get_right_subtree_sum(root);
 	printf("sum %d\n", sum);*/
+	/*int result[10];
+	inorder(root, result);
+	for (int i = 0; i < 10; i++)
+		printf("%d->\n", result[i]);*/
 	//int result[3];
 	/*postorder(root, result);
 	for (int i = 0; i < 3; i++)
@@ -75,10 +103,10 @@ int main(){
 	for (int i = 0; i < 3; i++)
 		printf("%d->\n", result[i]);*/
 	//Use it for testing ,Creating BST etc
-	int arr[10] = {9, 12, 18, 23, 24, 51, 84};
+	/*int arr[10] = {9, 12, 18, 23, 24, 51, 84};
 	struct node *root = NULL;
 	root = convert_array_to_bst(arr, 7);
 	printf("im out\n");
 	//printf("%d data\n", root->left->data);
-	preOrder(root);
+	preOrder(root);*/
 }

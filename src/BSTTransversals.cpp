@@ -63,22 +63,22 @@ void postorder_recursive(struct node *root, int *arr, int index){
 void inorder(struct node *root, int *arr){
 	if (root == NULL || arr == NULL)
 		return;
-	int index = 0;
-	inorder_recursive(root, arr, index);
+	//int index = 0;
+	inorder_recursive(root, arr, 0);
 	return;
 }
 void preorder(struct node *root, int *arr){
 	if (root == NULL || arr == NULL)
 		return;
-	int index = 0;
-	preorder_recursive(root, arr, index);
+	//int index = 0;
+	preorder_recursive(root, arr, 0);
 	return;
 }
 void postorder(struct node *root, int *arr){
 	if (root == NULL || arr == NULL)
 		return;
-	int index = 0;
-	postorder_recursive(root, arr, index);
+	//int index = 0;
+	postorder_recursive(root, arr, 0);
 	return;
 }
 

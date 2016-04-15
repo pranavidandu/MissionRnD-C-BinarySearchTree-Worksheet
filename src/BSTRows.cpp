@@ -29,16 +29,56 @@ struct node{
 	struct node *right;
 };
 
-void print_rows(int *arr, int index, struct node* root){
-	arr[index++] = root->data;
-	print_rows(arr, index, root->left);
-	print_rows(arr, index, root->right);
-}
 
+int count_nodes1(struct node* root, int count){
+	count = 1;
+	if (root == NULL)
+		return 0;
+	else{
+		count += count_nodes1(root->left, count);
+		count += count_nodes1(root->right, count);
+		return count;
+	}
+}
+int height1(struct node* root){
+	if (root == NULL)
+		return 0;
+	else{
+		int h1 = height1(root->left);
+		int h2 = height1(root->right);
+		if (h1 > h2)
+			return h1 + 1;
+		else return h2 + 1;
+	}
+}
+int level_order(struct node* root, int *arr, int index, int level){
+	if (root == NULL)
+		return index;
+	if (level == 1){
+		arr[index] = root->data;
+		index = index + 1;
+		return index;
+	}
+	else if (level > 1)
+	{
+		index = level_order(root->right, arr, index,  level - 1);
+		index = level_order(root->left, arr, index, level - 1);
+		return index;
+	}
+
+}
 int* BSTRighttoLeftRows(struct node* root)
-{	 if (root == NULL)
+{
+	if (root == NULL)
 		return NULL;
-	int arr[30];
-	print_rows(arr, 0, root);
+	int count = count_nodes1(root, 1);//function to find number of nodes in bst
+	int *arr = NULL;
+	arr = (int*)malloc(sizeof(int) * count);
+	int height = height1(root);//functionto find the height og sub tree
+
+	int index = 0;
+	for (int i = 1; i <= height; i++){
+		index = level_order(root,arr, index, i);//level order traversal using dfs
+	}
 	return arr;
 }
