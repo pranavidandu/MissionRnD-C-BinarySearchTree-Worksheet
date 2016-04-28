@@ -103,7 +103,23 @@ int min_dept(struct node *root){
 		return min_dept(root->left) + 1;
 	return min(min_dept(root->left), min_dept(root->right)) + 1;
 }
-
+struct node* find_parent_of_temp(struct node* root, struct node* temp){
+	if (root == NULL || temp == NULL){
+		return NULL;
+	}
+	else{
+		if (root->left == temp || root->right == temp)
+			return root;
+		else {
+			if (root->data < temp->data) {
+				return find_parent_of_temp(root->right, temp);
+			}
+			else {
+				return find_parent_of_temp(root->left, temp);
+			}
+		}
+	}
+}
 int get_closest_leaf_distance(struct node *root, struct node *temp)
 { 
 	if (root == NULL || temp == NULL)
@@ -119,9 +135,20 @@ int get_closest_leaf_distance(struct node *root, struct node *temp)
 	}
 	else
 		dis1 = min_dept(root->right);
-	dis1++;
-	if (dis1 > dis)
-		return dis;
-	else
-	return dis1;
+	printf("dis1 %d\n", dis1);
+	struct node* ptr = NULL;
+	if (dis1 >= dis){
+		ptr = find_parent_of_temp(root, temp);
+		printf("temp-> data %d\n", ptr->data);
+		int dis2 = min_dept(ptr);
+		if (dis2 > dis)
+			return dis;
+		return dis2;
+	}
+	ptr = find_parent_of_temp(root, temp);
+	printf("temp-> data %d\n", ptr->data);
+	int dis2 = min_dept(ptr);
+	if (dis1 >= dis2)
+	return dis2;
+	else return dis1 + 1;
 }

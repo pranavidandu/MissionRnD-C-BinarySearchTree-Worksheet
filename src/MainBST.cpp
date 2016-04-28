@@ -62,6 +62,7 @@ int main(){
 	struct node *temp = root->right;
 	int ans = 2;
 	int dist = get_closest_leaf_distance(root, temp);
+
 	printf("distance %d\n", dist);
 	/*struct node *root = NULL;
 	int nums[10] = { 10, 5, 7, 12, 15 };
