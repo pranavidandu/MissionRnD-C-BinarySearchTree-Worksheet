@@ -53,6 +53,16 @@ void preOrder(struct node* root)
 }
 
 int main(){
+	struct node *root = NULL;
+	int nums[10] = { 2, 1, 3, 4, 5, 6 };
+
+	for (int i = 0; i < 6; i++){
+		root = add_node_spec(root, nums[i]);
+	}
+	struct node *temp = root->right;
+	int ans = 2;
+	int dist = get_closest_leaf_distance(root, temp);
+	printf("distance %d\n", dist);
 	/*struct node *root = NULL;
 	int nums[10] = { 10, 5, 7, 12, 15 };
 
